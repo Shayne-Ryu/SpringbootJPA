@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/details.css">
+
+</head>
+
+<body>
+<div class="top-part-wrapper">
+    <div class="top-part">
+    </div>
+</div>
+<div class="details-wrapper">
+    <h1>添加联系人</h1>
+    <ul>
+        <li class="fn-clear">
+            <p class="fn-left">姓名</p><input class="fn-left" type="text" placeholder="请输入姓名" th:value="${xingming}">
+        </li>
+        <li class="fn-clear">
+            <p class="fn-left">电话</p><input class="fn-left" type="text" id="dianhua" placeholder="请输入电话"
+                                            th:value="${dianhua}">
+        </li>
+        <li class="fn-clear">
+            <p class="fn-left">邮箱</p><input class="fn-left" type="text" placeholder="请输入邮箱" th:value="${youxiang}">
+        </li>
+        <li class="fn-clear">
+            <p class="fn-left">住址</p><input class="fn-left" type="text" placeholder="请输入住址" th:value="${zhuzhi}">
+        </li>
+        <li class="fn-clear">
+            <p class="fn-left">qq号</p><input class="fn-left" type="text" placeholder="请输入QQ号" th:value="${qqhao}">
+            <p hidden th:text="${idhao}"></p>
+        </li>
+    </ul>
+    <button class="submit">提交</button>
+</div>
+
+<script>
+    //需求：京东的获取焦点
+    //思路：京东的input按钮获取了插入条光标立刻删除内容。失去插入条光标显示文字
+    //获取事件源和相关元素
+    var dianhua = document.getElementById("dianhua");
+
+    //失去焦点的事件
+    dianhua.onblur = function () {
+        //alert('失去焦点')
+        const obj = {
+            phone: this.value
+        };
+        //alert('失去焦点')
+
+        $.ajax({
+            url: "http://localhost:8080/checkphone",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+            type: "POST",
+
+            complete: function (msg) {
+                //alert('发送成功')
+                console.log(msg)
+                let name = "";
+                name = msg.responseText;
+                if(name.indexOf("1") != -1)
+                {
+
+                    alert("电话号码重复！请重新输入！");
+                    dianhua.value="";
+                }
+
+                // window.location.href = "http://localhost:8080/return";
+            }
+        });
+    }
+
+</script>
+
+<script>
+    var submit = document.querySelector(".submit")
+    var allInput = document.querySelectorAll("input")
+    var allP = document.querySelectorAll("li p")
+    var tip;
+    var addFlag = true;
+    var localItem = localStorage.getItem("editItem")
+
+    if (localItem) {
+        localItem = JSON.parse(localItem)
+        addFlag = false
+        allInput[0].value = localItem.name
+        allInput[1].value = localItem.tel
+        allInput[2].value = localItem.email
+        allInput[3].value = localItem.address
+        allInput[4].value = localItem.qq
+    }
+
+    submit.onclick = function () {
+        for (var i = 0; i < allInput.length; i++) {
+            if (!allInput[i].value) {
+                tip = allP[i].innerHTML
+                alert("请输入" + tip)
+                return
+            } else {
+                if (i === 1 && !/^1[0-9]{10}/.test(
+                    allInput[i].value)) {
+                    alert("您输入的手机号不符合规范")
+                    return
+                } else if (i === 2 && !/^([a-zA-Z0-9._-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/.test(allInput[i]
+                    .value)) {
+                    alert("您输入的邮箱不符合规范")
+                    return
+                }
+                // else if (i === 4 && /[1-9][0-9]{4,}/.test(allInput[i]
+                //         .value)) {
+                //     alert("您输入的qq号不符合规范")
+                //     return
+                // }
+            }
+        }
+
+        var obj = {
+            name: allInput[0].value,
+            phone: allInput[1].value,
+            mail: allInput[2].value,
+            address: allInput[3].value,
+            qq: allInput[4].value,
+        }
+
+        $.ajax({
+            url: "http://localhost:8080/additem",
+            contentType: "application/json",
+            data: JSON.stringify(obj),
+            dataType: "json",
+            type: "POST",
+
+            complete: function (data) {
+                console.log(data);
+                window.location.href = "http://localhost:8080/return";
+            }
+        });
+
+
+    }
+</script>
+</body>
+
+</html>

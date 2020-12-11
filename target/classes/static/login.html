@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>登录</title>
+  <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/login.css" />
+</head>
+
+<body>
+<div class="Midcon">
+  <ul class="check-type">
+    <li class="sel">
+      登录
+    </li>
+  </ul>
+  <div class="reg">
+    <div class="reg-l">
+      <form class="fro">
+        <input class="int" type="" name="" id="phone" placeholder="请输入用户名" />
+        <input class="int" type="password" name="" id="pas" placeholder="(密码)长度6~20，大小写字母、数字或下划线" />
+        <input type="button" id="butt" value="登录" />
+      </form>
+    </div>
+  </div>
+  <p class="test">测试用户名:123456</p>
+  <p class="test">测试密码:111111</p>
+</div>
+</body>
+
+<script>
+  //密码验证
+  var pas = document.querySelector("#pas"); //密码
+  var acc = document.querySelector("#phone"); //用户名
+  var butt = document.querySelector("#butt"); //登录按钮
+  var reg = /^\w{6,20}$/; //检验密码的正则
+  var findIndex = "";
+
+  var account = [ //用户登录账号密码
+
+    {
+      acc: '123456', //账号
+      pas: '111111', //密码
+    }
+
+  ]
+  butt.onclick = function () {
+    //登录的点击事件
+    //window.location.href = "./hello";
+    if (!acc.value) {
+      alert("请输入用户名");
+      return;
+    }
+
+    if (!reg.test(pas.value)) {
+      alert("您输入得密码不符合规范");
+      return;
+    }
+
+    
+    findIndex = ""
+    for (var y = 0; y < account.length; y++) {
+      if (phone.value == account[y].acc) {
+        findIndex = y;
+        break;
+      }
+    }
+    
+    if (typeof findIndex === "string") {
+      alert("没有该用户")
+    } else if (pas.value == account[y].pas) {
+      localStorage.setItem('rentRole', account[y].type)
+      alert('登录成功')
+      window.location.href = "index.html";
+    } else {
+      alert('密码错误')
+    }
+
+  }
+</script>
+
+</html>

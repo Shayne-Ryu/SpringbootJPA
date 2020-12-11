@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    $(function () {
+        $("[id^=shanchu]").click(function () {
+            $(this).parent().parent().hide();
+            const id1 = $(this).siblings("p").text();
+            $.get("http://localhost:8080/delete", {id: id1},);
+        });
+
+        $("[id^=bianji]").click(function () {
+            const id1 = $(this).siblings("p").text();
+            window.location.href='http://localhost:8080/edit?id='+id1
+        });
+
+    });
+
+    $(function () {
+        $("#ButtTJ").click(function () {
+            window.location.replace("http://localhost:8080/add");
+        });
+    });
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+
+<body>
+
+<div class="bottom_content">
+    <div class="right-content">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><p class="tongxunlu">通讯录</p></li>
+
+        </ol>
+        <button class="had-got" id="ButtTJ">添加</button>
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    姓名
+                </th>
+                <th>
+                    手机号
+                </th>
+                <th>
+                    邮箱
+                </th>
+                <th>
+                    地址
+                </th>
+                <th>
+                    QQ号
+                </th>
+                <th>
+                    操作
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}" th:id="shuju+${userStat.index+1}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.phone}"></td>
+                <td th:text="${user.mail}"></td>
+                <td th:text="${user.address}"></td>
+                <td th:text="${user.qq}"></td>
+                <td>
+                    <button class='not' th:id="shanchu+${userStat.index+1}">删除</button>
+                    <p hidden th:text="${user.id}"></p>
+                    <button class='had_dliver' th:id="bianji+${userStat.index+1}">编辑</button>
+                </td>
+            </tr>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+
+</html>

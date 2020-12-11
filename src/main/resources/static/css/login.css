@@ -1,0 +1,147 @@
+.top {
+  padding-top: 40px;
+  margin: 0 auto;
+  width: 900px;
+  height: 70px;
+}
+
+
+.Midcon {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 150px;
+  padding: 50px 0;
+  width: 1120px;
+  height: 400px;
+  background-color: whitesmoke;
+}
+
+.check-type {
+  height: 50px;
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.check-type li {
+  height: 100%;
+  width: 50%;
+  line-height: 50px;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sel {
+  color: #0394e2 !important;
+  border-bottom: 2px solid#0394e2;
+}
+
+.reg {
+  padding: 40px 75px;
+  overflow: hidden;
+  width: 450px;
+  margin: 0 auto;
+}
+
+.reg-l {
+  float: left;
+  padding-right: 50px;
+  width: 438px;
+  height: auto;
+  border-right: 1px solid #e5e5e5;
+}
+
+.title {
+  width: auto;
+  height: 60px;
+  line-height: 40px;
+  color: #333;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.RegLnav {
+  width: 100%;
+  height: 55px;
+  text-align: center;
+}
+
+.RegLnav a.cur {
+  color: #e23703;
+  border-top: 5px solid #e23703;
+}
+
+.RegLnav a {
+  float: left;
+  display: inline-block;
+  width: 219px;
+  height: 38px;
+  line-height: 38px;
+  font-size: 16px;
+  font-weight: bold;
+  border-top: 5px solid #ddd;
+}
+
+.RegLnav a:hover {
+  color: #e23703;
+}
+
+.fro {
+  display: block;
+}
+
+.int {
+  padding: 0 15px;
+  width: 406px;
+  height: 48px;
+  line-height: 48px;
+  color: #999;
+  font-size: 14px;
+  border: 1px solid #d5d5d5;
+  margin-bottom: 33px;
+}
+
+.fro #butt {
+  width: 270px;
+  height: 50px;
+  line-height: 50px;
+  color: #fff;
+  font-size: 20px;
+  background: #0394e2;
+  border: 0px;
+  margin-left: 85px;
+  cursor: pointer;
+  outline: none;
+}
+
+.Right {
+  float: left;
+  margin-left: -1px;
+  padding-left: 50px;
+  width: 211px;
+  height: auto;
+  border-left: 1px solid #e5e5e5;
+}
+
+.titl {
+  width: auto;
+  height: 60px;
+  line-height: 40px;
+  color: #333;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.test {
+  text-align: center;
+  font-size: 16px;
+}

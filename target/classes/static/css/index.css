@@ -1,0 +1,58 @@
+th{
+    color: #495060;
+    font-size: 12px;
+    height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: #f8f8f9;
+    text-align: center!important;
+}
+
+table{
+    width: 1200px;
+    border-collapse: separate;
+    border-spacing: 2px;
+    /* border: 1px solid grey; */
+}
+
+tbody td{
+    min-width: 0;
+    height: 48px;
+    box-sizing: border-box;
+    text-align: center;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border-bottom: 1px solid #e9eaec;
+}
+
+tbody tr:hover{
+    background: #a7badf;
+}
+
+.not{
+    background: #ed3f14;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.tongxunlu{
+    color: #21498c;
+    font-size:20px ;
+}
+
+.had-got{
+    background: #19be6b;
+    display: block;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.had_dliver{
+    background: #2d8cf0;
+    cursor: pointer;
+}
+
+button{
+    color: #fff!important;
+    padding: 3px 8px!important;
+    border-radius: 5px;
+}
